@@ -18,4 +18,5 @@ public:
   void MergeSort(double a[], int low, int high, bool printing);
   int Arraysize;
   int counter=0;
+  int number=0;
 };

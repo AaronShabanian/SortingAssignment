@@ -4,6 +4,7 @@
 #include <sstream>
 #include <time.h>
 #include <chrono>
+#include "RandomNumbers.h"
 using namespace std::chrono;
 
 SortingAlgorithms::SortingAlgorithms(){
@@ -19,8 +20,8 @@ SortingAlgorithms::~SortingAlgorithms(){
 
 void SortingAlgorithms::bubbleSort(double myArray[], bool printing){
   int temp=0;
-  for(int i=0; i<5; i++){
-    for (int j=0; j<4; j++){
+  for(int i=0; i<Arraysize; i++){
+    for (int j=0; j<Arraysize-1; j++){
       if(myArray[j]>myArray[j+1]){
         temp=myArray[j+1];
         myArray[j+1]=myArray[j];
@@ -38,13 +39,13 @@ void SortingAlgorithms::bubbleSort(double myArray[], bool printing){
 
 
 void SortingAlgorithms::selectionSort(double arr[], int n,bool printing){
-  // int i;
-  // int j;
+  int i;
+  int j;
   int minIndex;
   double tmp;
-  for(int i=0; i<n-1;i++){
+  for(i=0; i<n-1;i++){
     minIndex=i;
-    for(int j=i+1; j<n; j++){
+    for(j=i+1; j<n; j++){
       if(arr[j]<arr[minIndex]){
         minIndex=j;
       }
@@ -96,19 +97,21 @@ void SortingAlgorithms:: Merge(double a[], int low, int high, int mid, bool prin
 	int leftArrSize=mid-low+1;
   int RightArrSize=high-mid;
   int k;
+  int i;
+  int j;
   double left[leftArrSize];
   double right[RightArrSize];
 	//leftArrSize= low;
-  for(int i=0;i<leftArrSize;i++)
+  for( i=0;i<leftArrSize;i++)
     {
         left[i]=a[low+i];
     }
-  for(int j=0;j<RightArrSize;j++)
+  for( j=0;j<RightArrSize;j++)
     {
         right[j]=a[mid+j+1];
     }
-    int i=0;
-    int j=0;
+    i=0;
+    j=0;
   for(k=low;i<leftArrSize&&j<RightArrSize;k++)
     {
         if(left[i]<right[j])
@@ -129,12 +132,12 @@ void SortingAlgorithms:: Merge(double a[], int low, int high, int mid, bool prin
     {
         a[k++]=right[j++];
     }
-  counter++;
-  if(printing==true){
+  number++;
+  if(printing==true&&number==Arraysize-1){
     printArray(a);
   }
 
-	// Assign sorted data stored in temp[] to a[].
+
 }
 
 // Splits array.
@@ -160,12 +163,22 @@ void SortingAlgorithms::MergeSort(double arr[], int low, int high, bool printing
 int main(int argc,char **argv)
 {
   SortingAlgorithms sorter;
+  RandomNumbers randoms;
   string line;
   int counter=0;
   int index=0;
   int number=0;
+  string answers;
   string filename;
+  int big;
   while(true){
+    cout<<"Would you like to have a file with Random Numbers generated for you (yes/no)?"<<endl;
+    cin>>answers;
+    if(answers=="yes"){
+      cout<<"How many numbers"<<endl;
+      cin>>big;
+      randoms.createRandom(big);
+    }
     cout<<"What is the name of the file you would like to read from?"<<endl;
     cin>>filename;
     ifstream readfile (filename);
@@ -245,7 +258,6 @@ int main(int argc,char **argv)
         std::cout << "Elapsed time: " << elapsed.count() << " s\n";
       }
       else if (choice == 4 ){
-        cout<<sorter.Arraysize<<endl;
         auto start = std::chrono::high_resolution_clock::now();
         sorter.MergeSort(arr1,0,sorter.Arraysize-1, printing);
         auto finish = std::chrono::high_resolution_clock::now();

@@ -1,0 +1,32 @@
+
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc}
+
+\title{Results of Sorting Algorithms}
+\author{Aaron Shabanian }
+\date{December 8th 2019}
+
+\begin{document}
+
+\maketitle
+\section{Results Analysis}
+	  I implemented Merge Sort, Bubble Sort, Insertion Sort and Selection Sort. I ran my tests on an array of size 200,000 of which were randomly generated doubles by my program.  Initially before testing I expected that Merge Sort would out perform all of the other algorithms and I expected Bubble Sort, Insertion Sort and Selection Sort to perform the same.
+      \newline
+     \par 	My results were as follows: 
+     \newline	\par  \centering Bubble Sort: 221.829 seconds
+     \newline                      Selection Sort: 64.11 seconds
+      \newline                     Insertion Sort: 35.2984 seconds
+      \newline                     Merge Sort: .055 seconds
+      \newline 
+      \flushleft
+       \par
+      As I expected, Merge Sort out performed Bubble Sort, Selection Sort and Insertion Sort. However, I didn't expect the huge time differences between Bubble Sort, Selection Sort and Insertion sort because they are all O(n2). I expected them all to be very similar if not the same but Selection Sort took twice as long as Insertion sort and Bubble sort took much longer than both of them. 
+      \newline
+    \par
+      I also monitored activity monitor while the sorting algorithms were being run and saw my ram usage spike more than other sorting algorithms when merge sort was being run. This should be due to the fact that Merge Sort creates many  auxiliary arrays while it splits apart the array.
+      \newline
+      \par
+      In conclusion, Merge Sort is much faster than any of the other sorting algorithm but it also takes up much more memory than the other sorting algorithms tested.
+      
+\end{document}
