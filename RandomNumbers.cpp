@@ -16,6 +16,7 @@ void RandomNumbers::createRandom(int size){
   myfile<<size<<endl;
   int a;
   for(int i=0; i<size; i++){
+    //creates a list of random numbers from 0-to the size of the list the user specified
     a = ((double) rand() / (RAND_MAX))*size;
     myfile<<a<<endl;
   }

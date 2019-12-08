@@ -19,6 +19,7 @@ SortingAlgorithms::~SortingAlgorithms(){
 
 
 void SortingAlgorithms::bubbleSort(double myArray[], bool printing){
+  //iterates through all of the array comparing two numbers that are next to each other
   int temp=0;
   for(int i=0; i<Arraysize; i++){
     for (int j=0; j<Arraysize-1; j++){
@@ -171,6 +172,7 @@ int main(int argc,char **argv)
   string answers;
   string filename;
   int big;
+  //This is the part of the program that calls a function to generate the file of random numbers
   while(true){
     cout<<"Would you like to have a file with Random Numbers generated for you (yes/no)?"<<endl;
     cin>>answers;
@@ -189,6 +191,7 @@ int main(int argc,char **argv)
       cout<<"File could not be found, please enter another file name"<<endl;
     }
   }
+  //To see where to read from
   ifstream readfile (filename);
   getline(readfile, line);
   stringstream numberss(line);
@@ -196,7 +199,7 @@ int main(int argc,char **argv)
   sorter.Arraysize=number;
   double arr1[number];
 
-
+//reads through the file ands adds numbers to the array
   ifstream readfile2 (filename);
   if(readfile2.is_open()){
     while(getline(readfile2, line)){
@@ -221,6 +224,7 @@ int main(int argc,char **argv)
   double lowTime=0;
   double timer=0;
   while(true){
+    //boolean used to see if user wants to print
     cout<<" Would you like the print the results of the sorted array? (yes/no)"<<endl;
     cin>>answer;
     if(answer=="yes"){
@@ -237,6 +241,7 @@ int main(int argc,char **argv)
     cin>>choice;
     if(choice==1 || choice==2 || choice==3 || choice==4 ){
       if(choice == 1){
+        //std::chrono is used to see how long each algorithm took
         auto start = std::chrono::high_resolution_clock::now();
         sorter.bubbleSort(arr1, printing);
         auto finish = std::chrono::high_resolution_clock::now();
@@ -266,6 +271,7 @@ int main(int argc,char **argv)
       }
     }
     else{
+      //error checking
       cout<<" You did not enter a valid choice "<<endl;
     }
     cout<<"Would you like to try another algorithm (yes/no)?";
